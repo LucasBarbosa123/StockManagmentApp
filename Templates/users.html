@@ -1,0 +1,95 @@
+{{ template "header.html" }}
+
+    <h1> Utilizadores </h1>
+
+    <div class="w-100 py-1 d-flex justify-content-end">
+        <div class="rounded-circle circle-theme bg-theme-yellow d-flex align-items-center justify-content-center text-white hvr-purple"
+        data-bs-toggle="modal" data-bs-target="#CreateUpdtModal">
+            <i class="fa-solid fa-plus fa-xl"></i>
+        </div>
+    </div>
+
+    <div class="container">
+        <table id="UsersTbl" class="w-100 mt-3">
+            <thead class="bg-theme-yellow">
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Data Criação
+                    </th>
+                    <th>
+                        Utilities
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {{ range .users}}
+                    <tr>
+                        <td>
+                            {{ .FirstName }} {{ .LastName }}
+                        </td>
+                        <td>
+                            {{ .Email }}
+                        </td>
+                        <td class="dateTD">
+                            {{ .CreationDate }}
+                        </td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+                {{end}}
+            </tbody>
+        </table>
+    </div>
+
+    
+    <div class="modal fade" id="CreateUpdtModal" tabindex="-1" aria-labelledby="CreateUpdtModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="CreateUpdtModalLabel"> Criar Utilizador </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="w-100">
+                        <label for="FirstName"> Nome </label>
+                        <input class="form-control" type="text" id="FirstName" name="FirstName">
+                    </div>
+
+                    <div class="w-100">
+                        <label for="LastName"> Apelido </label>
+                        <input class="form-control" type="text" id="LastName" name="LastName">
+                    </div>
+
+                    <div class="w-100">
+                        <label for="Email"> Email </label>
+                        <input class="form-control" type="text" id="Email" name="Email">
+                    </div>
+
+                    <div class="w-100">
+                        <label for="Password"> Password </label>
+                        <div class="w-100 d-flex align-items-center">
+                            <input class="form-control w-75 complementary-left" type="text" id="Password" name="Password">
+                            <button type="button" class="w-25 btn bg-theme-purple complementary-right text-white focus-purple hvr-yellow" onclick="GeneratePass()"> Gerar </button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Fechar </button>
+                    <button type="button" class="btn bg-theme-yellow focus-yellow text-white hvr-purple" onclick="CreateUser()"> Criar </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/users.js"></script>
+
+{{ template "footer.html" }}
