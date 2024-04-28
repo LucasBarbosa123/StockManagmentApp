@@ -84,6 +84,48 @@ func DeleteUser(id string) error {
 	return nil
 }
 
+func GetUserById(userId string) (*models.User, error) {
+	db, err := dbstore.Connect()
+
+	if err != nil {
+		return nil, err
+	}
+
+	defer dbstore.Disconnect()
+
+	var user models.User
+	err = db.Where("id = ?", userId).Find(&user).Error
+
+	return &user, err
+}
+
+func EditUser(userInfo dtos.UserInfo) error {
+	db, err := dbstore.Connect()
+
+	if err != nil {
+		return err
+	}
+
+	defer dbstore.Disconnect()
+
+	var user models.User
+	err = db.Where("id = ?", userInfo.Id).Find(&user).Error
+	if err != nil {
+		return err
+	}
+
+	user.FirstName = userInfo.FirstName
+	user.LastName = userInfo.LastName
+	user.Email = userInfo.Email
+
+	err = db.Save(&user).Error
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func HashString(input string) string {
 	hash := sha256.New()
 	hash.Write([]byte(input))

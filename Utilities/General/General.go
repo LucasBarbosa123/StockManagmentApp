@@ -23,4 +23,6 @@ func SetRoutes(server *gin.Engine) {
 	server.GET("/api/generate-pass", controllers.GeneratePassword)
 	server.POST("/api/create-user", controllers.CreateUser)
 	server.POST("/api/delete-user", controllers.DeleteUser)
+	server.GET("/api/user-info/:id", controllers.GetUserInfoById)
+	server.POST("/api/edit-user", controllers.EditUser)
 }

@@ -4,7 +4,7 @@
 
     <div class="w-100 py-1 d-flex justify-content-end">
         <div class="rounded-circle circle-theme bg-theme-yellow d-flex align-items-center justify-content-center text-white hvr-purple"
-        data-bs-toggle="modal" data-bs-target="#CreateUpdtModal">
+        data-bs-toggle="modal" data-bs-target="#CreateUpdtModal" onclick="OpenUserCreator()">
             <i class="fa-solid fa-plus fa-xl"></i>
         </div>
     </div>
@@ -42,7 +42,8 @@
                         </td>
                         <td>
                             <div class="w-100 d-flex justify-content-end ">
-                                <button class="btn hvr-purple text-white bg-theme-yellow focus-yellow mx-2">
+                                <button class="btn hvr-purple text-white bg-theme-yellow focus-yellow mx-2" onclick="OpenUserEditor('{{ .ID }}')"
+                                data-bs-toggle="modal" data-bs-target="#CreateUpdtModal">
                                     <i class="fa-solid fa-user-pen"></i>
                                 </button>
     
@@ -81,7 +82,7 @@
                         <input class="form-control" type="text" id="Email" name="Email">
                     </div>
 
-                    <div class="w-100">
+                    <div id="PassInputContainer" class="w-100">
                         <label for="Password"> Password </label>
                         <div class="w-100 d-flex align-items-center">
                             <input class="form-control w-75 complementary-left" type="text" id="Password" name="Password">
@@ -92,7 +93,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Fechar </button>
-                    <button type="button" class="btn bg-theme-yellow focus-yellow text-white hvr-purple" onclick="CreateUser()"> Criar </button>
+                    <button id="CreateBtt" type="button" class="btn bg-theme-yellow focus-yellow text-white hvr-purple" 
+                    onclick="CreateUser()"> Criar </button>
+                    <button id="UpdateBtt" type="button" class="btn bg-theme-yellow focus-yellow text-white hvr-purple" 
+                    onclick="EditUser()"> Editar </button>
                 </div>
             </div>
         </div>

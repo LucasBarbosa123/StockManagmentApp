@@ -75,6 +75,54 @@ func DeleteUser(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, true)
 }
 
+func GetUserInfoById(c *gin.Context) {
+	userId := c.Param("id")
+
+	user, err := utilities.GetUserById(userId)
+
+	if err != nil {
+		c.IndentedJSON(http.StatusBadRequest, "Problems finding the user.")
+		return
+	}
+
+	userInfo := dtos.UserInfo{
+		Id:        user.ID,
+		FirstName: user.FirstName,
+		LastName:  user.LastName,
+		Email:     user.Email,
+	}
+
+	c.JSON(http.StatusOK, userInfo)
+}
+
+func EditUser(c *gin.Context) {
+	initValidator()
+	var req dtos.UserInfo
+
+	err := c.ShouldBind(&req)
+
+	if err != nil {
+		c.IndentedJSON(http.StatusBadRequest, "Invalid request body.")
+		return
+	}
+
+	err = validate.Struct(&req)
+
+	if err != nil {
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	err = utilities.EditUser(req)
+
+	if err != nil {
+		c.IndentedJSON(http.StatusBadRequest, err)
+		return
+	}
+
+	c.IndentedJSON(http.StatusOK, true)
+}
+
 func GetAllUsers() []models.User {
 	users, _ := utilities.GetAllUsers()
 	return users

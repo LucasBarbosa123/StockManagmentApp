@@ -1,3 +1,5 @@
+let userBeenEdited = ''
+
 function FormatUserTbl() {
     $('#UsersTbl').DataTable()
 }
@@ -117,14 +119,124 @@ async function CallUserDeletor(id) {
 			return response.json()
 		})
 		.then(data => {
-			console.log('data	' + data)
 			resolve(data)
 		})
 		.catch(error => {
-			console.log('error	' + error)
 			resolve(error)
 		})
   	})
+}
+
+async function OpenUserEditor(id) {
+	let firstNameInput = document.getElementById('FirstName')
+    let lastNameInput = document.getElementById('LastName')
+    let emailInput = document.getElementById('Email')
+	let passInputContainer = document.getElementById('PassInputContainer')
+	let createBtt = document.getElementById('CreateBtt')
+	let updateBtt = document.getElementById('UpdateBtt')
+
+	try {
+		let userInfo = await GetUserInfo(id)
+
+		firstNameInput.value = userInfo.firstname
+		lastNameInput.value = userInfo.lastname
+		emailInput.value = userInfo.email
+
+		passInputContainer.style.display = 'none'
+		createBtt.style.display = 'none'
+		updateBtt.style.display = 'inline-block'
+	} catch (error) {
+		alert(error)
+		return
+	}
+}
+
+async function GetUserInfo(id) {
+	userBeenEdited = id
+
+	return new Promise((resolve, reject) => {
+		fetch('/api/user-info/' + userBeenEdited, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+		.then(response => {
+			if (!response.ok) {
+				throw response.json()
+			}
+			return response.json()
+		})
+		.then(data => {
+			resolve(data)
+		})
+		.catch(error => {
+			reject(error)
+		})
+	})
+}
+
+function OpenUserCreator() {
+	let firstNameInput = document.getElementById('FirstName')
+    let lastNameInput = document.getElementById('LastName')
+    let emailInput = document.getElementById('Email')
+    let passInputContainer = document.getElementById('PassInputContainer')
+	let createBtt = document.getElementById('CreateBtt')
+	let updateBtt = document.getElementById('UpdateBtt')
+
+	firstNameInput.value = ''
+	lastNameInput.value = ''
+	emailInput.value = ''
+
+	passInputContainer.style.display = 'block'
+	createBtt.style.display = 'inline-block'
+	updateBtt.style.display = 'none'
+}
+
+async function EditUser() {
+	let firstName = document.getElementById('FirstName').value
+    let lastName = document.getElementById('LastName').value
+    let email = document.getElementById('Email').value
+
+	let userInfo = {
+		id: userBeenEdited,
+		firstname: firstName,
+		lastname: lastName,
+		email: email
+	}
+	
+	let success = await CallUserEditor(userInfo)
+
+	if (success != true) {
+		alert(success)
+		return
+	}
+
+	location.reload()
+}
+
+async function CallUserEditor(userInfo) {
+	return new Promise((resolve, reject) => {
+		fetch('/api/edit-user', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			  },
+			body: JSON.stringify(userInfo)
+		})
+		.then(response => {
+			if (!response.ok) {
+				throw response.json()
+			}
+			return response.json()
+		})
+		.then(data => {
+			resolve(data)
+		})
+		.catch(error => {
+			resolve(error)
+		})
+	})
 }
 
 //functions that run imidiatly after loading

@@ -7,3 +7,10 @@ type User struct {
 	Password  string `json:"password" validate:"required"`
 	Img       string `json:"img"`
 }
+
+type UserInfo struct {
+	Id        string `json:"id"`
+	FirstName string `json:"firstname"`
+	LastName  string `json:"lastname"`
+	Email     string `json:"email" validate:"email"`
+}
