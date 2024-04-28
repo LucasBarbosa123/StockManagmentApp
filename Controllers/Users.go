@@ -55,9 +55,28 @@ func CreateUser(c *gin.Context) {
 	c.IndentedJSON(http.StatusCreated, true)
 }
 
+func DeleteUser(c *gin.Context) {
+	var req string
+
+	err := c.ShouldBind(&req)
+
+	if err != nil {
+		c.IndentedJSON(http.StatusBadRequest, err)
+		return
+	}
+
+	err = utilities.DeleteUser(req)
+
+	if err != nil {
+		c.IndentedJSON(http.StatusBadRequest, err)
+		return
+	}
+
+	c.IndentedJSON(http.StatusOK, true)
+}
+
 func GetAllUsers() []models.User {
 	users, _ := utilities.GetAllUsers()
-
 	return users
 }
 

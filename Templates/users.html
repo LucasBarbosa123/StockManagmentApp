@@ -41,7 +41,15 @@
                             {{ .CreationDate }}
                         </td>
                         <td>
-                            
+                            <div class="w-100 d-flex justify-content-end ">
+                                <button class="btn hvr-purple text-white bg-theme-yellow focus-yellow mx-2">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                </button>
+    
+                                <button class="btn hvr-purple text-white bg-theme-yellow focus-yellow mx-2" onclick="DeleteUser('{{ .ID }}')">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 {{end}}

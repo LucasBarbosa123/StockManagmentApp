@@ -61,6 +61,29 @@ func CreateUser(userInfo *dtos.User) bool {
 	return true
 }
 
+func DeleteUser(id string) error {
+	db, err := dbstore.Connect()
+
+	if err != nil {
+		return err
+	}
+
+	defer dbstore.Disconnect()
+
+	var user models.User
+	err = db.Where("id = ?", id).Find(&user).Error
+	if err != nil {
+		return err
+	}
+
+	err = db.Delete(&user).Error
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func HashString(input string) string {
 	hash := sha256.New()
 	hash.Write([]byte(input))

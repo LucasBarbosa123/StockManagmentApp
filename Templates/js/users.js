@@ -5,8 +5,6 @@ function FormatUserTbl() {
 function NormalizeTblDates() {
 	let dateContainers = document.querySelectorAll('#UsersTbl .dateTD')
 
-	console.log(dateContainers)
-
 	dateContainers.forEach(container => {
 		let normalizedDate = DateNormalizer(container.innerText)
 
@@ -31,15 +29,15 @@ async function GetGeneratedPass() {
         })
         .then(response => {
           if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error('Network response was not ok')
           }
-          return response.json();
+          return response.json()
         })
         .then(data => {
-          resolve(data);
+          resolve(data)
         })
         .catch(error => {
-          resolve("");
+          resolve("")
         })
     })
 }
@@ -70,26 +68,63 @@ async function CreateUser() {
 
 async function CallUserCreator(userObj) {
 	return new Promise((resolve, reject) => {
-        fetch('/api/create-user', {
-          	method: 'POST',
-          	headers: {
-          	  'Content-Type': 'application/json'
-          	},
+      fetch('/api/create-user', {
+        	method: 'POST',
+        	headers: {
+        	  'Content-Type': 'application/json'
+        	},
 			body: JSON.stringify(userObj)
         })
         .then(response => {
           if (!response.ok) {
-			throw response.json();
+			      throw response.json()
           }
-          return response.json();
+          return response.json()
         })
         .then(data => {
-          resolve(data);
+          resolve(data)
         })
         .catch(error => {
-          resolve(error);
+          resolve(error)
         })
     })
+}
+
+async function DeleteUser(id) {
+	let success = await CallUserDeletor(id)
+
+	if (success != true) {
+		alert(success)
+		return
+	}
+
+	location.reload()
+}
+
+async function CallUserDeletor(id) {
+  return new Promise((resolve, reject) => {
+    	fetch('/api/delete-user', {
+    	  method: 'POST',
+    	  headers: {
+    	    'Content-Type': 'application/json'
+    	  },
+		  body: JSON.stringify(id)
+    	})
+		.then(response => {
+			if (!response.ok) {
+				throw response.json()
+			}
+			return response.json()
+		})
+		.then(data => {
+			console.log('data	' + data)
+			resolve(data)
+		})
+		.catch(error => {
+			console.log('error	' + error)
+			resolve(error)
+		})
+  	})
 }
 
 //functions that run imidiatly after loading
