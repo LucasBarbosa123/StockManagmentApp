@@ -18,6 +18,9 @@ func SetRoutes(server *gin.Engine) {
 			"users": users,
 		})
 	})
+	server.GET("/login", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "login.html", gin.H{})
+	})
 
 	//end points
 	server.GET("/api/generate-pass", controllers.GeneratePassword)
@@ -25,4 +28,5 @@ func SetRoutes(server *gin.Engine) {
 	server.POST("/api/delete-user", controllers.DeleteUser)
 	server.GET("/api/user-info/:id", controllers.GetUserInfoById)
 	server.POST("/api/edit-user", controllers.EditUser)
+	server.POST("/api/login", controllers.Login)
 }

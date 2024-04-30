@@ -1,0 +1,13 @@
+header {
+    display: none;
+}
+
+footer {
+    display: none;
+}
+
+body {
+    background: url('/imgs/login-bg.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}

@@ -1,11 +1,10 @@
 package utilities
 
 import (
-	"crypto/sha256"
-	"encoding/hex"
 	dbstore "stockManagment/DbStore"
 	models "stockManagment/DbStore/Models"
 	dtos "stockManagment/Dtos"
+	hashing_utilities "stockManagment/Utilities/Hashing"
 	"time"
 
 	"github.com/google/uuid"
@@ -40,7 +39,7 @@ func CreateUser(userInfo *dtos.User) bool {
 
 	defer dbstore.Disconnect()
 
-	hashedPass := HashString(userInfo.Password)
+	hashedPass := hashing_utilities.HashString(userInfo.Password)
 
 	newUser := models.User{
 		ID:           uuid.New().String(),
@@ -124,12 +123,4 @@ func EditUser(userInfo dtos.UserInfo) error {
 	}
 
 	return nil
-}
-
-func HashString(input string) string {
-	hash := sha256.New()
-	hash.Write([]byte(input))
-	hashedStr := hash.Sum(nil)
-
-	return hex.EncodeToString(hashedStr)
 }
