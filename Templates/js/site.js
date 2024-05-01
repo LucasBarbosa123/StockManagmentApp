@@ -24,3 +24,16 @@ function DateNormalizer(unormalizedDate) {
 
 	return day + '/' + month + '/' + year
 }
+
+async function Logout() {
+    let success = await fetch('/api/logout', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+
+    if (success.ok) {
+        location.reload()
+    }
+}

@@ -21,3 +21,12 @@ func SetSessionCookie(c *gin.Context, userId string) {
 
 	c.SetCookie("SessionCookie", userId, maxAge, path, domain, false, false)
 }
+
+// updates the coockie with maxAge as -1 witch deletes it
+func KillSessionCoockie(c *gin.Context) {
+	maxAge := -1
+	path := "/"
+	domain := ""
+
+	c.SetCookie("SessionCookie", "", maxAge, path, domain, false, false)
+}

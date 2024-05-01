@@ -38,3 +38,8 @@ func Login(c *gin.Context) {
 
 	c.IndentedJSON(http.StatusOK, true)
 }
+
+func Logout(c *gin.Context) {
+	cookies_utilities.KillSessionCoockie(c)
+	c.IndentedJSON(http.StatusOK, true)
+}

@@ -30,4 +30,5 @@ func SetRoutes(server *gin.Engine) {
 	server.GET("/api/user-info/:id", controllers.GetUserInfoById)
 	server.POST("/api/edit-user", controllers.EditUser)
 	server.POST("/api/login", controllers.Login)
+	server.POST("/api/logout", controllers.Logout)
 }
