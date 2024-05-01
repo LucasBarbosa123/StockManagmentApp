@@ -1,8 +1,5 @@
 {{ template "header.html" }}
 
-    <link rel="stylesheet" href="css/login.css">
-    <script src="js/login.js"></script>
-
     <div class="container d-flex">
         <div class="w-50" style="height: 10px;"></div>
 
@@ -11,7 +8,7 @@
                 <div class="rounded bg-grey-translcide mt-5">
                     <div class="card-header h4"> Login </div>
 
-                    <div class="card-body">
+                    <div id="loginForm" class="card-body">
                         <div class="w-100">
                             <label for="Email"> Email </label>
                             <input class="form-control" type="email" id="Email" name="Email">
@@ -23,12 +20,15 @@
                         </div>
 
                         <div class="w-100 mt-4">
-                            <button class="btn bg-theme-purple w-100 text-white hvr-yellow focus-purple" type="button" onclick="Login()"> Login </button>
+                            <button id="loginBtt" class="btn bg-theme-purple w-100 text-white hvr-yellow focus-purple" type="button" onclick="Login()"> Login </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <link rel="stylesheet" href="css/login.css">
+    <script src="js/login.js"></script>
 
 {{ template "footer.html" }}

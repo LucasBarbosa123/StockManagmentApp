@@ -40,3 +40,18 @@ async function CallLogin(loginInfo) {
 		})
     })
 }
+
+function addEnterListeners() {
+    let formInputs = document.querySelectorAll('#loginForm input')
+    let loginBtt = document.getElementById('loginBtt')
+
+    formInputs.forEach((input) => {
+        input.addEventListener('keyup', (e) => {
+            if(e.key.toLowerCase() == 'enter') {
+                loginBtt.click()
+            }
+        })
+    })
+}
+
+addEnterListeners()
