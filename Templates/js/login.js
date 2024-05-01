@@ -4,17 +4,17 @@ async function Login() {
 
     let loginInfo = {
         email: email,
-        pass: pass
+        password: pass
     }
 
     let res = await CallLogin(loginInfo)
 
-    if (res) {
+    if (res == true) {
         window.location.href = '/'
         return
     }
 
-    alert('Dados de login errados')
+    alert(res)
 }
 
 async function CallLogin(loginInfo) {

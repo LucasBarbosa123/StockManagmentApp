@@ -7,9 +7,9 @@ import (
 	models "stockManagment/DbStore/Models"
 	dtos "stockManagment/Dtos"
 	utilities "stockManagment/Utilities"
+	utilities_controllers "stockManagment/Utilities/Controllers"
 
 	"github.com/gin-gonic/gin"
-	"github.com/go-playground/validator/v10"
 )
 
 func GeneratePassword(c *gin.Context) {
@@ -28,7 +28,7 @@ func GeneratePassword(c *gin.Context) {
 }
 
 func CreateUser(c *gin.Context) {
-	initValidator()
+	validate := utilities_controllers.InitValidator()
 	var req dtos.User
 
 	err := c.ShouldBind(&req)
@@ -96,7 +96,7 @@ func GetUserInfoById(c *gin.Context) {
 }
 
 func EditUser(c *gin.Context) {
-	initValidator()
+	validate := utilities_controllers.InitValidator()
 	var req dtos.UserInfo
 
 	err := c.ShouldBind(&req)
@@ -126,10 +126,4 @@ func EditUser(c *gin.Context) {
 func GetAllUsers() []models.User {
 	users, _ := utilities.GetAllUsers()
 	return users
-}
-
-var validate *validator.Validate
-
-func initValidator() {
-	validate = validator.New()
 }
