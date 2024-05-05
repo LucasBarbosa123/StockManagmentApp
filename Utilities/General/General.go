@@ -14,9 +14,15 @@ func SetRoutes(server *gin.Engine) {
 		c.HTML(http.StatusOK, "index.html", gin.H{})
 	})
 	server.GET("/users", middleware.CheckCookie, func(c *gin.Context) {
-		users := controllers.GetAllUsers()
+		users := controllers.GetAllUsers(c)
 		c.HTML(http.StatusOK, "users.html", gin.H{
 			"users": users,
+		})
+	})
+	server.GET("/wearhouses", middleware.CheckCookie, func(c *gin.Context) {
+		wearhouses := controllers.GetAllWearhouses(c)
+		c.HTML(http.StatusOK, "wearhouses.html", gin.H{
+			"wearhouses": wearhouses,
 		})
 	})
 	server.GET("/login", middleware.CheckNoCookie, func(c *gin.Context) {
@@ -31,4 +37,8 @@ func SetRoutes(server *gin.Engine) {
 	server.POST("/api/edit-user", controllers.EditUser)
 	server.POST("/api/login", controllers.Login)
 	server.POST("/api/logout", controllers.Logout)
+	server.POST("/api/create-wearhouse", controllers.CreateWearhouse)
+	server.POST("/api/delete-warehouse", controllers.DeleteWarehouse)
+	server.GET("/api/warehouse-name/:id", controllers.GetWarehouseName)
+	server.POST("/api/edit-warehouse", controllers.EditWarehouse)
 }

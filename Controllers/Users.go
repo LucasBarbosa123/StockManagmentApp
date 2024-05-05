@@ -8,6 +8,7 @@ import (
 	dtos "stockManagment/Dtos"
 	utilities "stockManagment/Utilities"
 	utilities_controllers "stockManagment/Utilities/Controllers"
+	cookies_utilities "stockManagment/Utilities/Cookies"
 
 	"github.com/gin-gonic/gin"
 )
@@ -45,7 +46,8 @@ func CreateUser(c *gin.Context) {
 		return
 	}
 
-	success := utilities.CreateUser(&req)
+	currentCompanyId := cookies_utilities.GetCurrentCompanyId(c)
+	success := utilities.CreateUser(&req, currentCompanyId)
 
 	if !success {
 		c.IndentedJSON(http.StatusExpectationFailed, "Something is wrong creating the user.")
@@ -123,7 +125,8 @@ func EditUser(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, true)
 }
 
-func GetAllUsers() []models.User {
-	users, _ := utilities.GetAllUsers()
+func GetAllUsers(c *gin.Context) []models.User {
+	currentCompanyId := cookies_utilities.GetCurrentCompanyId(c)
+	users, _ := utilities.GetAllUsers(currentCompanyId)
 	return users
 }

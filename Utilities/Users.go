@@ -10,7 +10,7 @@ import (
 	"github.com/google/uuid"
 )
 
-func GetAllUsers() ([]models.User, error) {
+func GetAllUsers(companyId string) ([]models.User, error) {
 	db, err := dbstore.Connect()
 
 	if err != nil {
@@ -21,7 +21,7 @@ func GetAllUsers() ([]models.User, error) {
 
 	var users []models.User
 
-	err = db.Find(&users).Error
+	err = db.Where("company_id = ?", companyId).Find(&users).Error
 
 	if err != nil {
 		return nil, err
@@ -30,7 +30,7 @@ func GetAllUsers() ([]models.User, error) {
 	return users, nil
 }
 
-func CreateUser(userInfo *dtos.User) bool {
+func CreateUser(userInfo *dtos.User, companyId string) bool {
 	db, err := dbstore.Connect()
 
 	if err != nil {
@@ -40,7 +40,6 @@ func CreateUser(userInfo *dtos.User) bool {
 	defer dbstore.Disconnect()
 
 	hashedPass := hashing_utilities.HashString(userInfo.Password)
-
 	newUser := models.User{
 		ID:           uuid.New().String(),
 		FirstName:    userInfo.FirstName,
@@ -48,6 +47,7 @@ func CreateUser(userInfo *dtos.User) bool {
 		Email:        userInfo.Email,
 		Password:     hashedPass,
 		Img:          userInfo.Img,
+		CompanyID:    companyId,
 		CreationDate: time.Now(),
 	}
 
