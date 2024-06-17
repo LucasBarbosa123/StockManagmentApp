@@ -130,3 +130,9 @@ func GetAllUsers(c *gin.Context) []models.User {
 	users, _ := utilities.GetAllUsers(currentCompanyId)
 	return users
 }
+
+func GetSpecificUserInfo(c *gin.Context) models.User {
+	userId := cookies_utilities.RetriveCurrentUserId(c)
+	user, _ := utilities.GetUserById(userId)
+	return *user
+}

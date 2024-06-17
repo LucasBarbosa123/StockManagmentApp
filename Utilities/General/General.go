@@ -25,6 +25,15 @@ func SetRoutes(server *gin.Engine) {
 			"wearhouses": wearhouses,
 		})
 	})
+	server.GET("/myaccount", middleware.CheckCookie, func(c *gin.Context) {
+		userInfo := controllers.GetSpecificUserInfo(c)
+		c.HTML(http.StatusOK, "myAccount.html", gin.H{
+			"userInfo": userInfo,
+		})
+	})
+	server.GET("/stocks", middleware.CheckCookie, func(c *gin.Context) {
+		c.HTML(http.StatusOK, "stocks.html", gin.H{})
+	})
 	server.GET("/login", middleware.CheckNoCookie, func(c *gin.Context) {
 		c.HTML(http.StatusOK, "login.html", gin.H{})
 	})
