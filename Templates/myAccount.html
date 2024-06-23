@@ -1,5 +1,40 @@
 {{ template "header.html" }}
 
-    <div> Definições de Conta </div>
+    <h1> Definições de Conta </h1>
+
+    <div class="col-md-12 d-flex py-3">
+        <div class="col-md-5 pe-3">
+            <label for="firstName"> Primeiro Nome </label>
+            <input type="text" class="w-100 form-control" id="firstName" name="firstName" value="">
+        </div>
+        <div class="col-md-5 px-3">
+            <label for="lastName"> Ultimo Nome </label>
+            <input type="text" class="w-100 form-control" id="lastName" name="lastName" value="">
+        </div>
+
+        <div class="col-md-2 px-3 d-flex align-items-end">
+            <button onlick="ChangeNames()" class="btn bg-theme-yellow hvr-purple text-white">
+                Gravar
+            </button>
+        </div>
+    </div>
+
+    <div class="col-md-12 d-flex py-3">
+        <div class="col-md-5 p-3 ps-0">
+            <label for="pass"> Password </label>
+            <input type="password" class="form-control" id="pass" name="pass" value="">
+        </div>
+
+        <div class="col-md-5 p-3 d-none">
+            <label for="passConf"> Password </label>
+            <input type="password" class="form-control" id="passConf" name="passConf" value="">
+        </div>
+
+        <div class="col-md-2 p-3 d-flex align-items-end">
+            <button id="passActionTrigger" class="btn bg-theme-yellow hvr-purple text-white">
+                Mudar Password
+            </button>
+        </div>
+    </div>
 
 {{ template "footer.html" }}
