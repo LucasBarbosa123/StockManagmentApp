@@ -5,11 +5,11 @@
     <div class="col-md-12 d-flex py-3">
         <div class="col-md-5 pe-3">
             <label for="firstName"> Primeiro Nome </label>
-            <input type="text" class="w-100 form-control" id="firstName" name="firstName" value="">
+            <input type="text" class="w-100 form-control" id="firstName" name="firstName" value="{{ .userInfo.FirstName }}">
         </div>
         <div class="col-md-5 px-3">
             <label for="lastName"> Ultimo Nome </label>
-            <input type="text" class="w-100 form-control" id="lastName" name="lastName" value="">
+            <input type="text" class="w-100 form-control" id="lastName" name="lastName" value="{{ .userInfo.LastName }}">
         </div>
 
         <div class="col-md-2 px-3 d-flex align-items-end">
@@ -22,19 +22,24 @@
     <div class="col-md-12 d-flex py-3">
         <div class="col-md-5 p-3 ps-0">
             <label for="pass"> Password </label>
-            <input type="password" class="form-control" id="pass" name="pass" value="">
+            <input type="password" class="form-control" id="pass" name="pass" value="{{ .userInfo.Password }}">
         </div>
 
-        <div class="col-md-5 p-3 d-none">
+        <div id="passConfirmationContainer" class="col-md-5 p-3 d-none">
             <label for="passConf"> Password </label>
-            <input type="password" class="form-control" id="passConf" name="passConf" value="">
+            <input type="password" class="form-control" id="passConf" name="passConf" value="{{ .userInfo.Password }}">
         </div>
 
         <div class="col-md-2 p-3 d-flex align-items-end">
-            <button id="passActionTrigger" class="btn bg-theme-yellow hvr-purple text-white">
+            <button id="passActionTrigger" onclick="StartChangePass()" class="btn bg-theme-yellow hvr-purple text-white">
                 Mudar Password
+            </button>
+
+            <button id="changePassBtt" onclick="ChangePass()" class="btn bg-theme-purple hvr-yellow text-white d-none">
+                Mudar
             </button>
         </div>
     </div>
 
+    <script src="js/myAccount.js"></script>
 {{ template "footer.html" }}
