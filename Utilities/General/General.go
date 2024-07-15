@@ -40,14 +40,15 @@ func SetRoutes(server *gin.Engine) {
 
 	//end points
 	server.GET("/api/generate-pass", controllers.GeneratePassword)
+	server.GET("/api/user-info/:id", controllers.GetUserInfoById)
 	server.POST("/api/create-user", controllers.CreateUser)
 	server.POST("/api/delete-user", controllers.DeleteUser)
-	server.GET("/api/user-info/:id", controllers.GetUserInfoById)
 	server.POST("/api/edit-user", controllers.EditUser)
+	server.POST("/api/change-user-info/:id", controllers.ChangeUserInfo)
 	server.POST("/api/login", controllers.Login)
 	server.POST("/api/logout", controllers.Logout)
+	server.GET("/api/warehouse-name/:id", controllers.GetWarehouseName)
 	server.POST("/api/create-wearhouse", controllers.CreateWearhouse)
 	server.POST("/api/delete-warehouse", controllers.DeleteWarehouse)
-	server.GET("/api/warehouse-name/:id", controllers.GetWarehouseName)
 	server.POST("/api/edit-warehouse", controllers.EditWarehouse)
 }

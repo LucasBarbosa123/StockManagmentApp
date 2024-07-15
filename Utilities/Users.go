@@ -124,3 +124,28 @@ func EditUser(userInfo dtos.UserInfo) error {
 
 	return nil
 }
+
+func ChangeUserInfo(id string, userInfo dtos.UserChangerInfo) error {
+	db, err := dbstore.Connect()
+	if err != nil {
+		return err
+	}
+
+	defer dbstore.Disconnect()
+
+	var user models.User
+	err = db.Where("id = ?", id).Find(&user).Error
+	if err != nil {
+		return err
+	}
+
+	user.FirstName = userInfo.FirstName
+	user.LastName = userInfo.LastName
+
+	err = db.Save(&user).Error
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

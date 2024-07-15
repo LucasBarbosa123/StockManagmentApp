@@ -14,3 +14,8 @@ type UserInfo struct {
 	LastName  string `json:"lastname"`
 	Email     string `json:"email" validate:"email"`
 }
+
+type UserChangerInfo struct {
+	FirstName string `json:"firstname"`
+	LastName  string `json:"lastname"`
+}
