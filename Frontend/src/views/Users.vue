@@ -13,13 +13,25 @@
               Novo Utilizador
             </button>
         </div>
+
+        <div class="w-full flex-1">
+            <ag-grid-vue
+              class="ag-theme-quartz w-full"
+              style="height: 25rem;"
+              :columnDefs="columnDefs"
+              :rowData="rowData"
+              :defaultColDef="defaultColDef"
+              :gridOptions="gridOptions"
+            ></ag-grid-vue>
+        </div>
     </div>
 </template>
 
 <script>
-
+export default {}
 </script>
 
 <style>
-
+@import '~ag-grid-community/styles/ag-grid.css';
+@import '~ag-grid-community/styles/ag-theme-quartz.css';
 </style>
