@@ -16,6 +16,7 @@ import Admin from "@/layouts/Admin.vue";
 // views for Admin layout
 
 import Index from "@/views/Index.vue";
+import Users from "@/views/Users.vue";
 
 // routes
 
@@ -28,6 +29,16 @@ const routes = [
       {
         path: "/Home",
         component: Index,
+        meta: {
+          title: 'Inicio'
+        },  
+      },
+      {
+        path: "/Users",
+        component: Users,
+        meta: {
+          title: 'Utilizadores'
+        },  
       },
     ],
   },

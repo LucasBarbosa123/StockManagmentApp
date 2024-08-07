@@ -10,17 +10,28 @@
       <!-- <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
         <user-dropdown />
       </ul> -->
+
+      <h1 class="text-white text-3xl mt-8"> {{ viewTitle }} </h1>
+
     </div>
   </nav>
   <!-- End Navbar -->
 </template>
 
 <script>
-// import UserDropdown from "@/components/Dropdowns/UserDropdown.vue";
-
 export default {
-  components: {
-    // UserDropdo11111wn,
+  computed: {
+    viewTitle() {
+      return this.$route.meta.title || 'Default Title';
+    }
   },
+  watch: {
+    '$route'() {
+      document.title = this.viewTitle;
+    }
+  },
+  mounted() {
+    document.title = this.viewTitle;
+  }
 };
 </script>
