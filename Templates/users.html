@@ -2,16 +2,17 @@
 
     <h1> Utilizadores </h1>
 
-    <div class="w-100 py-1 d-flex justify-content-end">
-        <div class="rounded-circle circle-theme bg-theme-yellow d-flex align-items-center justify-content-center text-white hvr-purple"
+    <div class="container pb-3 d-flex justify-content-end">
+        <button class="btn bg-blue focus-blue text-white" 
         data-bs-toggle="modal" data-bs-target="#CreateUpdtModal" onclick="OpenUserCreator()">
+            Novo Utilizador
             <i class="fa-solid fa-plus fa-xl"></i>
-        </div>
+        </button>
     </div>
 
     <div class="container">
-        <table id="UsersTbl" class="w-100 mt-3">
-            <thead class="bg-theme-yellow">
+        <table id="UsersTbl" class="w-100 mt-3 responsive">
+            <thead class="bottom-border-blue">
                 <tr>
                     <th>
                         Nome
@@ -42,12 +43,12 @@
                         </td>
                         <td>
                             <div class="w-100 d-flex justify-content-end ">
-                                <button class="btn hvr-purple text-white bg-theme-yellow focus-yellow mx-2" onclick="OpenUserEditor('{{ .ID }}')"
+                                <button class="btn text-white bg-yellow focus-yellow mx-2" onclick="OpenUserEditor('{{ .ID }}')"
                                 data-bs-toggle="modal" data-bs-target="#CreateUpdtModal">
                                     <i class="fa-solid fa-user-pen"></i>
                                 </button>
     
-                                <button class="btn hvr-purple text-white bg-theme-yellow focus-yellow mx-2" onclick="DeleteUser('{{ .ID }}')">
+                                <button class="btn text-white bg-red focus-red mx-2" onclick="DeleteUser('{{ .ID }}')">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </button>
                             </div>
@@ -86,16 +87,16 @@
                         <label for="Password"> Password </label>
                         <div class="w-100 d-flex align-items-center">
                             <input class="form-control w-75 complementary-left" type="text" id="Password" name="Password">
-                            <button type="button" class="w-25 btn bg-theme-purple complementary-right text-white focus-purple hvr-yellow" onclick="GeneratePass()"> Gerar </button>
+                            <button type="button" class="w-25 btn complementary-right text-white bg-blue focus-blue" onclick="GeneratePass()"> Gerar </button>
                         </div>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Fechar </button>
-                    <button id="CreateBtt" type="button" class="btn bg-theme-yellow focus-yellow text-white hvr-purple" 
+                    <button type="button" class="btn bg-white focus-blue color-grey border-grey" data-bs-dismiss="modal"> Fechar </button>
+                    <button id="CreateBtt" type="button" class="btn bg-green focus-green text-white" 
                     onclick="CreateUser()"> Criar </button>
-                    <button id="UpdateBtt" type="button" class="btn bg-theme-yellow focus-yellow text-white hvr-purple" 
+                    <button id="UpdateBtt" type="button" class="btn bg-green focus-green text-white" 
                     onclick="EditUser()"> Editar </button>
                 </div>
             </div>

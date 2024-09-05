@@ -47,60 +47,62 @@
 </head>
 <body>
     <header>
-        <nav class="bg-theme-yellow">
-            <div class="container w-100 py-4 mx-5">
-                <i class="fa-solid fa-bars fa-2xl a-theme-grey hvr-purple" data-bs-toggle="offcanvas" data-bs-target="#mainMenu" aria-controls="mainMenu"></i>
+        <nav class="bg-white">
+            <div class="p-3 w-100 under-shadow-blue">
+                <i class="fa-solid fa-bars fa-2xl p-4 cursor-pointer color-blue" data-bs-toggle="offcanvas" data-bs-target="#mainMenu" aria-controls="mainMenu"></i>
             </div>
         </nav>
     </header>
 
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="mainMenu" aria-labelledby="mainMenuLabel">
+    <div class="offcanvas offcanvas-start right-shadow-blue" tabindex="-1" id="mainMenu" aria-labelledby="mainMenuLabel" style="width: 300px;">
         <div class="offcanvas-header">
-          <h4 class="offcanvas-title" id="mainMenuLabel"> Stock Managment </h4>
-          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <div> <!-- dummy div --> </div>
+            <button type="button" class="bg-white border-0 p-0" data-bs-dismiss="offcanvas" aria-label="Close">
+                <i class="fa-solid fa-bars fa-2xl p-4 color-blue border-0"></i>
+            </button>
         </div>
 
-        <div class="offcanvas-body d-flex flex-column">
-            <a href="/" class="btn bg-theme-yellow focus-yellow my-2 text-white hvr-purple">
+        <div class="offcanvas-body d-flex flex-column ps-5 p-0">
+            <a href="/" class="text-decoration-none bottom-border-blue hvr-color-blue color-grey mt-3">
                 <i class="fa-solid fa-house"></i>
                 Início
             </a>
-            
-            <a href="/myaccount" class="btn bg-theme-yellow focus-yellow my-2 text-white hvr-purple">
-                <i class="fa-solid fa-user"></i>
-                Minha Conta
-            </a>
 
-            <a href="/wearhouses" class="btn bg-theme-yellow focus-yellow my-2 text-white hvr-purple">
+            <a href="/wearhouses" class="text-decoration-none bottom-border-blue hvr-color-blue color-grey mt-3">
                 <i class="fa-solid fa-warehouse"></i>
                 Armazens
             </a>
 
-            <a href="/stocks" class="btn bg-theme-yellow focus-yellow my-2 text-white hvr-purple">
+            <a href="/stocks" class="text-decoration-none bottom-border-blue hvr-color-blue color-grey mt-3">
                 <i class="fa-solid fa-truck-ramp-box"></i>
                 Stocks
             </a>
-            
-            <a class="btn bg-theme-yellow focus-yellow my-2 text-white hvr-purple" data-bs-toggle="collapse" href="#AdmSubmenu" role="button" 
+
+            <a class="text-decoration-none bottom-border-blue hvr-color-blue color-grey mt-3" data-bs-toggle="collapse" href="#AdmSubmenu" role="button" 
             aria-expanded="false" aria-controls="AdmSubmenu" onclick="ChangeArrow(event)">
                 <i class="fa-brands fa-black-tie"></i>
                 Administração
-                <i class="fa-solid fa-chevron-left"></i>
+                <i class="fa-solid fa-chevron-down"></i>
             </a>
-            <div class="collapse" id="AdmSubmenu">
-                <div class="container">
-                    <a href="/users" class="btn bg-theme-purple focus-purple text-white mb-2 w-100 hvr-yellow">
+            <div class="collapse bg-white color-white pb-3 ps-4" id="AdmSubmenu">
+                <div class="bottom-border-blue mt-3 w-100">
+                    <a href="/users" class="color-grey text-decoration-none hvr-color-blue">
                         <i class="fa-solid fa-users"></i>
                         Utilizadores
                     </a>
                 </div>
+                
             </div>
 
-            <button type="button" onclick="Logout()" class="btn bg-theme-yellow focus-yellow my-2 text-white hvr-purple">
+            <a href="/myaccount" class="text-decoration-none bottom-border-green color-grey hvr-color-green mt-3">
+                <i class="fa-solid fa-user"></i>
+                Minha Conta
+            </a>
+
+            <a type="button" onclick="Logout(event)" class="text-decoration-none bottom-border-red color-grey hvr-color-red mt-3">
                 <i class="fa-solid fa-user"></i>
                 Sair
-            </button>
-
+            </a>
         </div>
     </div>
 

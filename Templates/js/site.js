@@ -7,13 +7,13 @@ function ChangeArrow(e) {
 
     let arrow = container.lastElementChild
 
-    if (arrow.classList.contains('fa-chevron-left')) {
-        arrow.classList.remove('fa-chevron-left')
+    if (arrow.classList.contains('fa-chevron-right')) {
+        arrow.classList.remove('fa-chevron-right')
         arrow.classList.add('fa-chevron-down')
     }
     else {
         arrow.classList.remove('fa-chevron-down')
-        arrow.classList.add('fa-chevron-left')
+        arrow.classList.add('fa-chevron-right')
     }
 }
 
@@ -25,7 +25,8 @@ function DateNormalizer(unormalizedDate) {
 	return day + '/' + month + '/' + year
 }
 
-async function Logout() {
+async function Logout(event) {
+    event.preventDefault()
     let success = await fetch('/api/logout', {
         method: 'POST',
         headers: {
