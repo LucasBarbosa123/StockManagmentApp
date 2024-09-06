@@ -1,4 +1,6 @@
-async function Login() {
+async function Login(event) {
+    event.preventDefault()
+    
     let email = document.getElementById('Email').value
     let pass = document.getElementById('Pass').value
 
@@ -40,18 +42,3 @@ async function CallLogin(loginInfo) {
 		})
     })
 }
-
-function addEnterListeners() {
-    let formInputs = document.querySelectorAll('#loginForm input')
-    let loginBtt = document.getElementById('loginBtt')
-
-    formInputs.forEach((input) => {
-        input.addEventListener('keyup', (e) => {
-            if(e.key.toLowerCase() == 'enter') {
-                loginBtt.click()
-            }
-        })
-    })
-}
-
-addEnterListeners()

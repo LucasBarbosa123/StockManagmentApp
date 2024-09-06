@@ -15,7 +15,7 @@
 
     <div class="col-md-12 d-flex py-3 justify-content-end pe-5">
         <div class="px-2 d-flex align-items-end">
-            <button onclick="ChangePassword('{{ .userInfo.ID }}')" class="btn bg-white border-grey focus-blue color-grey px-3"
+            <button class="btn bg-white border-grey focus-blue color-grey px-3"
             data-bs-toggle="modal" data-bs-target="#ChangePasswordModal">
                 Mudar Password
             </button>
@@ -36,25 +36,25 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="w-100">
+                    <div class="w-100 mb-4">
                         <label for="FirstName"> Password Antiga </label>
-                        <input class="form-control" type="password" id="FirstName" name="FirstName">
+                        <input class="form-control" type="password" id="oldPass" name="FirstName">
                     </div>
 
                     <div class="w-100">
                         <label for="LastName"> Password Nova </label>
-                        <input class="form-control" type="password" id="LastName" name="LastName">
+                        <input class="form-control" type="password" id="newPass" name="LastName">
                     </div>
 
                     <div class="w-100">
                         <label for="LastName"> Confirmar Password Nova </label>
-                        <input class="form-control" type="password" id="LastName" name="LastName">
+                        <input class="form-control" type="password" id="newPass2" name="LastName">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn bg-white border-grey focus-blue color-grey" data-bs-dismiss="modal"> Fechar </button>
                     <button id="UpdateBtt" type="button" class="btn text-white bg-green focus-green" 
-                    onclick="ChangeActualPassword()"> Mudar </button>
+                    onclick="ChangePassword('{{ .userInfo.ID }}')"> Mudar </button>
                 </div>
             </div>
         </div>

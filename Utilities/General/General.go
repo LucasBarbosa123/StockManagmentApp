@@ -39,20 +39,20 @@ func SetRoutes(server *gin.Engine) {
 	})
 
 	//users
-	server.GET("/api/generate-pass", controllers.GeneratePassword)
-	server.GET("/api/user-info/:id", controllers.GetUserInfoById)
-	server.POST("/api/create-user", controllers.CreateUser)
-	server.POST("/api/delete-user", controllers.DeleteUser)
-	server.POST("/api/edit-user", controllers.EditUser)
-	server.POST("/api/change-user-info/:id", controllers.ChangeUserInfo)
+	server.GET("/api/generate-pass", middleware.CheckCookie, controllers.GeneratePassword)
+	server.GET("/api/user-info/:id", middleware.CheckCookie, controllers.GetUserInfoById)
+	server.POST("/api/create-user", middleware.CheckCookie, controllers.CreateUser)
+	server.POST("/api/delete-user", middleware.CheckCookie, controllers.DeleteUser)
+	server.POST("/api/edit-user", middleware.CheckCookie, controllers.EditUser)
+	server.POST("/api/change-user-info/:id", middleware.CheckCookie, controllers.ChangeUserInfo)
 
 	//login
-	server.POST("/api/login", controllers.Login)
-	server.POST("/api/logout", controllers.Logout)
+	server.POST("/api/login", middleware.CheckNoCookie, controllers.Login)
+	server.POST("/api/logout", middleware.CheckCookie, controllers.Logout)
 
 	//whearhouse
-	server.GET("/api/warehouse-name/:id", controllers.GetWarehouseName)
-	server.POST("/api/create-wearhouse", controllers.CreateWearhouse)
-	server.POST("/api/delete-warehouse", controllers.DeleteWarehouse)
-	server.POST("/api/edit-warehouse", controllers.EditWarehouse)
+	server.GET("/api/warehouse-name/:id", middleware.CheckCookie, controllers.GetWarehouseName)
+	server.POST("/api/create-wearhouse", middleware.CheckCookie, controllers.CreateWearhouse)
+	server.POST("/api/delete-warehouse", middleware.CheckCookie, controllers.DeleteWarehouse)
+	server.POST("/api/edit-warehouse", middleware.CheckCookie, controllers.EditWarehouse)
 }
