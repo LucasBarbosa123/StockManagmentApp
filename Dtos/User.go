@@ -19,3 +19,8 @@ type UserChangerInfo struct {
 	FirstName string `json:"firstname"`
 	LastName  string `json:"lastname"`
 }
+
+type PassChangerInfo struct {
+	OldPass string `json:"oldPass" validate:"required"`
+	NewPass string `json:"newPass" validate:"required"`
+}

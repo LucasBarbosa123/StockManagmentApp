@@ -35,17 +35,35 @@ CREATE TABLE Warehouses (
     FOREIGN KEY (company_id) REFERENCES Companies(id)
 );
 
+CREATE TABLE Colors (
+    id varchar(200),
+    name varchar(200),
+    color varchar(10),
+    
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE Unitys (
+    id varchar(200),
+    name varchar(200),
+    description varchar(10),
+  
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE Stuf (
     id varchar(200),
     name varchar(200),
-    unidade varchar(50),
     creation_date datetime,
     creator_id varchar(200),
-    unitary_cost DECIMAL(10, 5),
     company_id varchar(200),
+    color_id varchar(200),
+    unity_id varchar(200),
 
     PRIMARY KEY (id),
-    FOREIGN KEY (company_id) REFERENCES Companies(id)
+    FOREIGN KEY (company_id) REFERENCES Companies(id),
+    FOREIGN KEY (color_id) REFERENCES Colors(id),
+    FOREIGN KEY (unity_id) REFERENCES Unitys(id)
 );
 
 CREATE TABLE Warehouses_Stuff (
@@ -57,5 +75,4 @@ CREATE TABLE Warehouses_Stuff (
     PRIMARY KEY (id),
     FOREIGN KEY (stuf_id) REFERENCES Stuf(id),
     FOREIGN KEY (wear_house_id) REFERENCES Warehouses(id)
-
 );

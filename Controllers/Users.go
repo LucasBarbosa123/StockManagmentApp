@@ -151,6 +151,31 @@ func ChangeUserInfo(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, true)
 }
 
+func ChangePass(c *gin.Context) {
+	validate := utilities_controllers.InitValidator()
+	userId := c.Param("id")
+	var req dtos.PassChangerInfo
+
+	err := c.ShouldBind(&req)
+	if err != nil {
+		c.IndentedJSON(http.StatusBadRequest, "Invalid request body.")
+		return
+	}
+
+	err = validate.Struct(&req)
+	if err != nil {
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	err = utilities.ChangeUserPassword(userId, req)
+	if err != nil {
+		c.IndentedJSON(http.StatusTeapot, gin.H{"error": err.Error()})
+	}
+
+	c.IndentedJSON(http.StatusOK, true)
+}
+
 func GetAllUsers(c *gin.Context) []models.User {
 	currentCompanyId := cookies_utilities.GetCurrentCompanyId(c)
 	users, _ := utilities.GetAllUsers(currentCompanyId)

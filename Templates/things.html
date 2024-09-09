@@ -1,0 +1,66 @@
+{{ template "header.html" }}
+
+    <h1> Artigos </h1>
+
+    <div class="container pb-3 d-flex justify-content-end">
+        <button class="btn bg-blue focus-blue text-white" 
+        data-bs-toggle="modal" data-bs-target="#CreateUpdtModal" onclick="OpenStufCreator()">
+            Novo Artigo
+            <i class="fa-solid fa-plus fa-xl"></i>
+        </button>
+    </div>
+
+    <div class="modal fade" id="CreateUpdtModal" tabindex="-1" aria-labelledby="CreateUpdtModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="CreateUpdtModalLabel"> Criar Artigo </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="w-100 py-2">
+                        <label for="Name"> Nome </label>
+                        <input class="form-control" type="text" id="Name" name="Name">
+                    </div>
+
+                    <div class="w-100 py-2">
+                        <label for="Name"> Unidade </label>
+                        <input class="form-control" type="text" id="Name" name="Name">
+                    </div>
+
+                    <div class="py-2">
+                        <label for="Color"> Color </label>
+                       
+
+                        <div class="w-100 d-flex align-items-end py-2">                        
+                            <div class="w-25">
+                                <label class="switch">
+                                    <input type="checkbox" id="hasColor" onchange="HideShowColor()" checked>
+                                    <span class="slider"></span>
+                                </label>      
+                            </div>
+    
+                            <div class="w-75" id="colorContainer">
+                                <div class="d-flex justify-content-center">
+                                    <input class="form-control w-75 complementary-left" type="text" id="Color" name="Color">
+                                    <button class="w-25 btn bg-blue px-2 complementary-right">
+                                        <i class="fa-solid fa-plus fa-xl text-white"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-white focus-blue color-grey border-grey" data-bs-dismiss="modal"> Fechar </button>
+                    <button id="CreateBtt" type="button" class="btn bg-green focus-green text-white" 
+                    onclick="CreateStuf()"> Criar </button>
+                    <button id="UpdateBtt" type="button" class="btn bg-green focus-green text-white" 
+                    onclick="EditStuf()"> Editar </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/things.js"></script>
+{{ template "footer.html" }}

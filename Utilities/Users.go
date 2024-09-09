@@ -1,6 +1,7 @@
 package utilities
 
 import (
+	"errors"
 	dbstore "stockManagment/DbStore"
 	models "stockManagment/DbStore/Models"
 	dtos "stockManagment/Dtos"
@@ -142,6 +143,33 @@ func ChangeUserInfo(id string, userInfo dtos.UserChangerInfo) error {
 	user.FirstName = userInfo.FirstName
 	user.LastName = userInfo.LastName
 
+	err = db.Save(&user).Error
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func ChangeUserPassword(id string, passInfo dtos.PassChangerInfo) error {
+	db, err := dbstore.Connect()
+	if err != nil {
+		return err
+	}
+
+	defer dbstore.Disconnect()
+
+	var user models.User
+	err = db.Where("id = ?", id).Find(&user).Error
+	if err != nil {
+		return err
+	}
+
+	if hashing_utilities.HashString(passInfo.OldPass) != user.Password {
+		return errors.New("wrong password")
+	}
+
+	user.Password = hashing_utilities.HashString(passInfo.NewPass)
 	err = db.Save(&user).Error
 	if err != nil {
 		return err

@@ -34,6 +34,9 @@ func SetRoutes(server *gin.Engine) {
 	server.GET("/stocks", middleware.CheckCookie, func(c *gin.Context) {
 		c.HTML(http.StatusOK, "stocks.html", gin.H{})
 	})
+	server.GET("/artigos", middleware.CheckCookie, func(c *gin.Context) {
+		c.HTML(http.StatusOK, "things.html", gin.H{})
+	})
 	server.GET("/login", middleware.CheckNoCookie, func(c *gin.Context) {
 		c.HTML(http.StatusOK, "login.html", gin.H{})
 	})
@@ -45,6 +48,7 @@ func SetRoutes(server *gin.Engine) {
 	server.POST("/api/delete-user", middleware.CheckCookie, controllers.DeleteUser)
 	server.POST("/api/edit-user", middleware.CheckCookie, controllers.EditUser)
 	server.POST("/api/change-user-info/:id", middleware.CheckCookie, controllers.ChangeUserInfo)
+	server.POST("/api/change-user-pass/:id", middleware.CheckCookie, controllers.ChangePass)
 
 	//login
 	server.POST("/api/login", middleware.CheckNoCookie, controllers.Login)

@@ -69,10 +69,12 @@ async function ChangePassword(id) {
         alert('Algo de errado aconteceu ao tentar mudar a sua password.')
         return
     }
+
+    location.reload()
 }
 
 async function CallPasswordChanger(id, info) {
-    return new Priomise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         fetch(`/api/change-user-pass/${id}`, {
             method: 'POST',
             headers: {
