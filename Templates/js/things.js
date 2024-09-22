@@ -28,3 +28,25 @@ function HideShowColor() {
     }
 
 }
+
+function OpenColorCreator() {
+    //hide the stuff modal before while going to the colors one
+    $('#CreateUpdtModal').modal('hide')
+
+    let colorName = document.getElementById('ColorName')
+    let colorRef = document.getElementById('ColorRef')
+
+    colorRef.value = '#000000'
+    colorName.value = ''
+}
+
+function CloseColorModal() {
+    //after we create the color we return to the stuff modal
+    $('#CreateColorModal').modal('hide')
+    $('#CreateUpdtModal').modal('show')
+}
+
+function CreateColor() {
+    
+    CloseColorModal()
+}

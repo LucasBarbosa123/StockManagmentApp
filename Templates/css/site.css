@@ -162,6 +162,7 @@ table.dataTable thead th.ui-state-default:first-child, table.dataTable tfoot th.
   display: inline-block;
   width: 3.5em;
   height: 2.1em;
+  margin-bottom: 0.1rem;
 }
 
 .switch input {

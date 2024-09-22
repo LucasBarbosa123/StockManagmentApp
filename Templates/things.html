@@ -25,7 +25,13 @@
 
                     <div class="w-100 py-2">
                         <label for="Name"> Unidade </label>
-                        <input class="form-control" type="text" id="Name" name="Name">
+                        
+                        <div class="d-flex justify-content-center">
+                            <input class="form-control w-75 complementary-left" type="text" id="Name" name="Name">
+                            <button class="w-25 btn bg-blue px-2 complementary-right">
+                                <i class="fa-solid fa-plus fa-xl text-white"></i>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="py-2">
@@ -43,7 +49,8 @@
                             <div class="w-75" id="colorContainer">
                                 <div class="d-flex justify-content-center">
                                     <input class="form-control w-75 complementary-left" type="text" id="Color" name="Color">
-                                    <button class="w-25 btn bg-blue px-2 complementary-right">
+                                    <button class="w-25 btn bg-blue px-2 complementary-right" 
+                                    data-bs-toggle="modal" data-bs-target="#CreateColorModal"  onclick="OpenColorCreator()">
                                         <i class="fa-solid fa-plus fa-xl text-white"></i>
                                     </button>
                                 </div>
@@ -57,6 +64,39 @@
                     onclick="CreateStuf()"> Criar </button>
                     <button id="UpdateBtt" type="button" class="btn bg-green focus-green text-white" 
                     onclick="EditStuf()"> Editar </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="CreateColorModal" tabindex="-1" aria-labelledby="CreateColorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="CreateColorModalLabel"> Criar Cor </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" 
+                    onclick="CloseColorModal()"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="w-100 d-flex align-items-end py-2">                        
+                        <div class="w-75">
+                            <label for="ColorName"> Nome </label>
+                            <input class="form-control " type="text" id="ColorName" name="ColorName">
+                        </div>
+                        
+
+                        <div class="w-25 ps-4 pe-2">
+                            <label for="ColorRef" class="form-label"> Cor </label>
+                            <input type="color" class="form-control form-control-color mw-100 w-100" id="ColorRef" name="ColorRef">    
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-white focus-blue color-grey border-grey" data-bs-dismiss="modal"
+                    onclick="CloseColorModal()"> 
+                        Fechar </button>
+                    <button id="CreateBtt" type="button" class="btn bg-green focus-green text-white" 
+                    onclick="CreateColor()"> Criar </button>
                 </div>
             </div>
         </div>
