@@ -59,4 +59,7 @@ func SetRoutes(server *gin.Engine) {
 	server.POST("/api/create-wearhouse", middleware.CheckCookie, controllers.CreateWearhouse)
 	server.POST("/api/delete-warehouse", middleware.CheckCookie, controllers.DeleteWarehouse)
 	server.POST("/api/edit-warehouse", middleware.CheckCookie, controllers.EditWarehouse)
+
+	//colors
+	server.POST("/api/create-color", middleware.CheckCookie, controllers.CreateColor)
 }

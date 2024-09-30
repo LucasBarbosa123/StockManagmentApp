@@ -18,9 +18,6 @@ function HideShowColor() {
     let colorContainer = document.getElementById('colorContainer')
     let hasColor = document.getElementById('hasColor')
 
-    console.log(hasColor)
-    console.log(hasColor.checked)
-
     if (hasColor.checked) {
         colorContainer.style.display = 'block'
     } else {
@@ -46,7 +43,43 @@ function CloseColorModal() {
     $('#CreateUpdtModal').modal('show')
 }
 
-function CreateColor() {
-    
+async function CreateColor() {
+    let name = document.getElementById('ColorName')
+    let ref = document.getElementById('ColorRef')
+    let colorInfo = {
+        Name: name.value,
+        Ref: ref.value
+    }
+
+    let success = await CallColorCreator(colorInfo)
+    if (!success) {
+        alert('Algo de errado aconteceu ao criar a cor.')
+        return
+    }
+
     CloseColorModal()
+}
+
+async function CallColorCreator(colorInfo) {
+    return new Promise((resolve, reject) => {
+        fetch('/api/create-color', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			  },
+			body: JSON.stringify(colorInfo)
+		})
+		.then(response => {
+			if (!response.ok) {
+				throw response.json()
+			}
+			return response.json()
+		})
+		.then(data => {
+			resolve(data)
+		})
+		.catch(error => {
+			resolve(error)
+		})
+    })
 }
